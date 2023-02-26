@@ -1,0 +1,148 @@
+body{
+    background-color: black;
+}
+#wrapper{
+    margin: 1px;
+    border-radius: 6px;
+    box-shadow: 0px 1px 6px rgba(149, 149, 149, 0.2);
+    box-sizing: border-box;
+    padding: 0 0 20px;
+    overflow: hidden;
+    border: 1px solid rgb(82, 82, 82);
+    color: rgb(233, 233, 233);
+    background-color: rgb(45, 45, 45);
+}
+
+#page-banner{
+    background: rgb(28, 28, 28);
+    padding: 10px 0;
+}
+
+#page-banner h1, .page-banner p{
+    padding: 1px;
+    margin: 2px 2px;
+    margin-left: 3vw;
+    text-align: left;
+}
+
+#add-task input{
+    width: 50%;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-left: 3vw;
+    background-color: rgb(81, 81, 81);
+    color: #dedede;
+    border: 1px solid #393939;
+    border-radius: 4px;
+    padding: 8px;
+}
+
+#add-task button{
+    appearance: none;
+    border: 0;
+    border-radius: 5px;
+    background: #4676D7;
+    color: #fff;
+    padding: 8px 16px;
+    font-size: 16px;
+}
+
+#add-task button:hover{
+    background: #1c3a75;
+}
+
+#page-banner #show-done{
+    margin-left: 3vw;
+    width: 20px;
+}
+
+#page-banner label{
+    line-height: 10px;
+}
+
+ul{
+    list-style-type: none;
+    padding: 0;
+}
+
+li{
+    padding: 20px;
+    border-left: 5px solid #135fbb;
+    margin: 20px 10px;
+    background-color: #585858;
+    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    word-break: break-word;
+    cursor: grab;
+}
+
+.is-dragging{
+    scale: 1.018;
+    padding: 20px;
+    border-left: 5px solid #2564ab;
+    margin: 20px 10px;
+    background-color: #919191;
+    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    word-break: break-word;
+    cursor: grabbing;
+}
+
+li:hover{
+    border-left: 5px solid #55a0c2;
+}
+
+li span{
+    word-wrap: break-word;
+}
+
+li button{
+    float: right;
+    appearance: none;
+    border: 0;
+    border-radius: 5px;
+    background: #1e1e1e;
+    color: #fff;
+    padding: 8px 8px;
+    font-size: 16px;
+}
+
+li button:hover{
+    background: #333333;
+}
+
+h2{
+    padding-left: 2vw;
+    padding-top: 5px;
+}
+
+#done-list li{
+    color: #8c8b8b;
+    padding: 10px;
+    border-left: 5px solid #02517b;
+    margin: 10px 10px;
+    background-color: #131313;
+    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+}
+
+#delete-done{
+    margin-right: 10px;
+    appearance: none;
+    border: 0;
+    border-radius: 5px;
+    background: #797878;
+    color: #2d2d2d;
+    float: center;
+    font-size: 20px;
+}
+
+#delete-done:hover{
+    background: rgb(190, 189, 189)
+}
+
+#done-list p{
+    padding-left: 2vw;
+    font-size: 25px;
+    font-weight: bold;
+}
