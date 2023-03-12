@@ -2,6 +2,7 @@
   "name": "mytodo_web",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -20,7 +21,9 @@
   },
   "homepage": "https://github.com/rccyamazaki0129/mytodo_web#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mysql2": "^3.2.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
