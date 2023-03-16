@@ -13,7 +13,7 @@ const pool = mysql.createPool({
 
 /* get selected database's table */
 export async function getTasks() {
-    const [rows] = await pool.query("SELECT * FROM tasks")
+    const [rows] = await pool.query("SELECT * FROM users")
     return rows
 }
 
@@ -21,7 +21,7 @@ export async function getTasks() {
 export async function getTask(id) {
     const [rows] = await pool.query(`
         SELECT *
-        FROM tasks
+        FROM users
         WHERE id = ?
         `, [id])
     return rows[0]
@@ -30,7 +30,7 @@ export async function getTask(id) {
 /* create a task in the tasks table */
 export async function createTask(task_title){
     const [result] = await pool.query(`
-        INSERT INTO tasks (task_title)
+        INSERT INTO users (task_title)
         VALUES (?)
         `, [task_title])
     return getTask(result.insertId)
@@ -39,7 +39,7 @@ export async function createTask(task_title){
 /* delete a task from tasks table */
 export async function deleteTask(id){
     const [rows] = await pool.query(`
-        DELETE FROM tasks
+        DELETE FROM users
         WHERE id = ?
     `, [id])
     return rows[0]
@@ -48,7 +48,7 @@ export async function deleteTask(id){
 /* update a task in the tasks table */
 export async function updateTask(id, task_title){
     const [result] = await pool.query(`
-        UPDATE tasks
+        UPDATE users
         SET task_title = ?
         WHERE id = ?
     `, [task_title, id])
