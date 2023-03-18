@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Register</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <link rel="stylesheet" href="login_styles.css">
 </head>
 <body>
-    <div class="login">
-        <h1>Login</h1>
-        <form action="/auth" method="post">
+    <div class="register">
+        <h1>Create an account</h1>
+        <form action="/register" method="post">
+            <label for="emailaddress">
+                <i class="fas fa-envelope"></i>
+            </label>
+            <input type="email" name="emailaddress" id="emailaddress" placeholder="email" required>
             <label for="username">
                 <i class="fas fa-user"></i>
             </label>
@@ -20,7 +24,14 @@
                 <i class="fas fa-lock"></i>
             </label>
             <input type="password" name="password" id="password" placeholder="password" required>
-            <input type="submit" value="Login">
+            <label for="password-confirm">
+                <i class="fas fa-lock"></i>
+            </label>
+            <input type="password" name="password_confirm" id="password-confirm" placeholder="confirm password" required>
+            <input type="submit" value="Create an account">
+
+            <span>Already have an account?<a href="/login.html">Login here</a></span>
+            
         </form>
     </div>
 </body>

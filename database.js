@@ -12,45 +12,66 @@ const pool = mysql.createPool({
 }).promise()
 
 /* get selected database's table */
-export async function getTasks() {
+export async function getUsers() {
     const [rows] = await pool.query("SELECT * FROM users")
     return rows
 }
 
 /* get a single task from table */
-export async function getTask(id) {
+export async function getUser(username) {
     const [rows] = await pool.query(`
         SELECT *
         FROM users
-        WHERE id = ?
-        `, [id])
+        WHERE username = ?
+        `, [username])
     return rows[0]
 }
 
 /* create a task in the tasks table */
-export async function createTask(task_title){
+export async function createUser(username, password, email){
     const [result] = await pool.query(`
-        INSERT INTO users (task_title)
-        VALUES (?)
-        `, [task_title])
-    return getTask(result.insertId)
+        INSERT INTO users (username, password, email)
+        VALUES (?, ?, ?)
+        `, [username, password, email])
+    return getUser(result.insertId)
 }
 
 /* delete a task from tasks table */
-export async function deleteTask(id){
+export async function deleteUser(username){
     const [rows] = await pool.query(`
         DELETE FROM users
-        WHERE id = ?
-    `, [id])
+        WHERE username = ?
+    `, [username])
     return rows[0]
 }
 
 /* update a task in the tasks table */
-export async function updateTask(id, task_title){
+export async function updateUser(username, password){
     const [result] = await pool.query(`
         UPDATE users
-        SET task_title = ?
-        WHERE id = ?
-    `, [task_title, id])
-    return getTask(id)
+        SET password = ?
+        WHERE username = ?
+    `, [password, username])
+    return getUser(username)
+}
+
+/* find matching username from database */
+export async function findUsername(username){
+    const [result] = await pool.query(`
+        SELECT *
+        FROM users
+        WHERE username = ?
+    `, [username])
+    return result
+}
+
+/* find matching email from database */
+export async function findEmail(email){
+    const [result] = await pool.query(`
+        SELECT *
+        FROM users
+        WHERE email = ?
+    `, [email])
+    console.log(result)
+    return result
 }
