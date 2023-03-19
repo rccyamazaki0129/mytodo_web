@@ -25,18 +25,21 @@ app.use(session({
 
 /* provide login page */
 app.get('/', function(req, res) {
-  res.sendFile(__dirname + '/public/login.html');
-});
+  res.sendFile(__dirname + '/public/login.html')
+})
 
 /* access guard for mytodo.html */
 app.get('/mytodo.html', function(req, res) {
+  /* check if user logged in */
   if (req.session.loggedin){
-    res.sendFile(__dirname + '/public/mytodo.html');
+    /* user already logged in */
+    res.sendFile(__dirname + '/public/mytodo.html')
   }
   else{
+    /* user did not log in */
     res.redirect('/')
   }
-});
+})
 
 /* login procedure */
 app.post('/auth', async (req, res) => {
@@ -46,7 +49,6 @@ app.post('/auth', async (req, res) => {
   if (username && password){
     /* issue a query to database */
     const result = await findUsername(username)
-    console.log(result.length)
     if (result.length == 0) {
       /* username not exist */ 
       console.log('username does not exist')
@@ -58,8 +60,7 @@ app.post('/auth', async (req, res) => {
     const user_info = result[0]
     if (user_info.username == username){
       /* password validation */
-      const pass_match = 
-        await bcrypt.compare(password, user_info.password)
+      const pass_match = await bcrypt.compare(password, user_info.password)
       if (pass_match){
         /* login succeeded */
         req.session.loggedin = true
@@ -118,36 +119,6 @@ app.post('/register', async (req, res) => {
   req.session.username = username
   console.log('username: ' + username + ' login succeeded')
   res.redirect('/mytodo.html')
-})
-
-/* query database */
-app.get('/users', async (req, res) => {
-  const tasks = await getUsers()
-  res.send(tasks)
-})
-
-app.get('/users/:username', async (req, res) => {
-  const username = req.params.username
-  const user = await getUser(username)
-  res.send(user)
-})
-
-app.post('/users', async (req, res) =>{
-  const {username, password, email} = req.body
-  const new_user = await createUser(username, password, email)
-  res.status(201).send(new_user)
-})
-
-app.get('/users/delete/:username', async (req, res) => {
-  const username = req.params.username
-  const result = await deleteUser(username)
-  res.send(result)
-})
-
-app.post('/users/update', async (req, res) => {
-  const {username, password} = req.body
-  const updated_user = await updateUser(username, password)
-  res.status(201).send(updated_user)
 })
 
 app.use(express.static("public"))
